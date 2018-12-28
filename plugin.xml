@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-notchScreen" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" version="1.0.0">
+    <engines>
+       <engine name="cordova" version=">=3.3.0" />
+    </engines>
+   
+    <name>notchScreen</name>
+    <js-module  src="www/notchScreen.js"  name="notchScreen">
+	   <!-- JS调用时的名字 -->
+        <clobbers target="notchScreen" />
+    </js-module>
+	
+    <!--添加Android平台  -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">   
+            <feature name="notchScreen">  
+                <param name="android-package" value="org.apache.cordova.notchScreen.notchScreen"/>
+            </feature>  
+        </config-file>  
+        <!-- src:是插件里存放对应.java的路径， target-dir:安装插件时把.java文件存放的位置，要和上面的value路径对应 -->
+        <source-file src="src/android/notchScreen.java" target-dir="src/org/apache/cordova/notchScreen" />
+    </platform> 
+
+	
+	 <!-- ios平台的配置   -->
+     <platform name="ios">  
+		  <config-file target="config.xml" parent="/*">    
+			  <feature name="notchScreen">  
+				  <param name="ios-package" value="CDVnotchScreen" />  
+		      </feature> 
+		  </config-file>  
+          <!-- 源文件 -->
+        <header-file src="src/ios/CDVnotchScreen.h" />  
+        <source-file src="src/ios/CDVnotchScreen.m" />   
+    </platform>  
+
+ 
+	
+</plugin>
