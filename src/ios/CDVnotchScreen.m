@@ -10,16 +10,17 @@
 //  判断是否有刘海屏
 - (void)isNotchScreen:(CDVInvokedUrlCommand*)command
 {
-     if (@available(iOS 11.0, *)) {
-        if (!UIEdgeInsetsEqualToEdgeInsets(self.view.safeAreaInsets, UIEdgeInsetsZero)) {
+  if (@available(iOS 11.0, *)) {
+        if (!UIEdgeInsetsEqualToEdgeInsets(self.webView.safeAreaInsets, UIEdgeInsetsZero)) {
             CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK  messageAsString:@"true"] ;
-            [self.commandDelegate sendPluginResult:result callbackId:initCallback];
-            return YES;
+            [self.commandDelegate sendPluginResult:result callbackId: command.callbackId];
+            
         }
     }
     CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK  messageAsString:@"false"] ;
-    [self.commandDelegate sendPluginResult:result callbackId:initCallback];
-    return NO;
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+  
+
  
 }
  
