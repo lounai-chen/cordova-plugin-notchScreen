@@ -11,7 +11,8 @@
 - (void)isNotchScreen:(CDVInvokedUrlCommand*)command
 {
   if (@available(iOS 11.0, *)) {
-        if (!UIEdgeInsetsEqualToEdgeInsets(self.webView.safeAreaInsets, UIEdgeInsetsZero)) {
+         CGFloat a = [[UIApplication sharedApplication ] delegate].window.safeAreaInsets.bottom;
+         if(a>0){
             CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK  messageAsString:@"true"] ;
             [self.commandDelegate sendPluginResult:result callbackId: command.callbackId];
             
@@ -19,7 +20,6 @@
     }
     CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK  messageAsString:@"false"] ;
     [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
-  
 
  
 }
